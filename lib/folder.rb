@@ -41,9 +41,12 @@ class Folder
     Zip::File.open(archive_path, Zip::File::CREATE) do |zipfile|
       Dir["#{folder}/**/**"].each do |file|
         puts "Adding #{file} to archive"
-        zipfile.add("#{folder_name}/#{File.basename(file)}", file)
+        zipfile.add("#{folder_name}/#{file.gsub(folder, "")}", file)
+        puts "Added #{file} to archive"
       end
     end
+
+    puts "Archive completed in #{archive_path}"
   end
 
   def delete_archive_if_exists
