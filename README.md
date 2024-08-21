@@ -34,12 +34,10 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/usr/bin/env ruby /path/to/cloud-backup/main.rb
-Group=YOUR_GROUP    # Optional: you can remove if you want to run as sudo
+ExecStart=/usr/local/rvm/wrappers/ruby-3.3.4/ruby /path/to/cloud-backup/main.rb
 Restart=always
 RestartSec=5
 Type=simple
-User=YOUR_USER      # Optional: you can remove if you want to run as sudo
 WorkingDirectory=/path/to/cloud-backup
 
 [Install]
