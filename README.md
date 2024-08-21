@@ -27,17 +27,20 @@ ruby main.rb
 ### Creating a service
 
 ```sh
+# In /etc/systemd/system/cloud-backup.service
 [Unit]
 Description=Cloud Backup Ruby Script
-After=network.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 ExecStart=/usr/bin/env ruby /path/to/cloud-backup/main.rb
-WorkingDirectory=/path/to/cloud-backup
+Group=YOUR_GROUP    # Optional: you can remove if you want to run as sudo
 Restart=always
 RestartSec=5
-User=YOUR_USER
-Group=YOUR_GROUP
+Type=simple
+User=YOUR_USER      # Optional: you can remove if you want to run as sudo
+WorkingDirectory=/path/to/cloud-backup
 
 [Install]
 WantedBy=multi-user.target

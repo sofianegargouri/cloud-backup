@@ -3,7 +3,7 @@
 require 'active_support'
 require 'active_support/core_ext/hash/indifferent_access'
 require 'active_support/core_ext/string/inflections'
-Dir["#{__dir__}/providers/*.rb"].each { |file| require file }
+Dir["#{__dir__}/providers/*.rb"].sort.each { |file| require file }
 require 'yaml'
 
 class Config
@@ -39,7 +39,7 @@ class Config
   end
 
   def parsed_config_file_content
-    @parsed_config_file_content ||= YAML.load(config_file_content).with_indifferent_access
+    @parsed_config_file_content ||= YAML.safe_load(config_file_content).with_indifferent_access
   end
 
   def config_file_content

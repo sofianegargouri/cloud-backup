@@ -3,8 +3,8 @@
 # frozen_string_literal: true
 
 require 'rufus-scheduler'
-require './lib/config'
-require './lib/folder'
+require_relative './lib/config'
+require_relative './lib/folder'
 
 scheduler = Rufus::Scheduler.new
 
