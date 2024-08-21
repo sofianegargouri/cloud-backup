@@ -1,0 +1,25 @@
+providers:
+  gcs:
+    type: google_cloud_storage
+    bucket_name: YOUR_BUCKET_NAME
+    service_account_json_key: >
+      {
+        "type": "type",
+        "project_id": "project_id",
+        "private_key_id": "private_key_id",
+        "private_key": "private_key",
+        "client_email": "client_email",
+        "client_id": "client_id",
+        "auth_uri": "auth_uri",
+        "token_uri": "token_uri",
+        "auth_provider_x509_cert_url": "auth_provider_x509_cert_url",
+        "client_x509_cert_url": "client_x509_cert_url",
+        "universe_domain": "universe_domain"
+      }
+
+backed_up_folders:
+  - cron: 0 5 * * *                     # The cron to trigger the save
+    folder: /home/youruser/yourdata     # The folder you want to backup
+    max_backups: 5                      # The max number of backups you want to keep on remote storage
+    provider: gcs                       # The provider key in providers
+    remote_folder: example              # The folder in which backup will be uploaded on remote storage
